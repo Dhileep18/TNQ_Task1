@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    width: 30%;
+    height: 300px;
+    padding: 1em;
+    justify-content: center;
+}
+
+.button_style {
+    width: fit-content;
+}
+
+.input_label {
+    background: lightcyan;
+    font-size: 14px;
+    padding: 7px;
+}
+.output_label {
+    background: lightcyan;
+    font-size: 14px;
+    padding: 7px;
+}
+#myInput{
+    width: 100%;
+    min-height: 100px;
+}
+#myTextarea{
+    width: 100%;   
+    min-height: 100px; 
+}
+.button_align{
+    display: flex;
+    justify-content: end;
+}
+.button_style {
+    background-color: #5e44be87;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  }
+  
+  .button_style:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+  .button_align{
+    margin-top: 1em;
+  }

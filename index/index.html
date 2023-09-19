@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> TNQ Task1 </title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <label class="input_label"> Input JSON </label>
+        </div>
+        <textarea id="myInput" rows="4" cols="50"></textarea>
+        <div class="button_align">
+            <button onclick="handleReadData()" class="button_style" id="generateBtn"> Generate </button>
+        </div>
+        <div>
+            <label class="output_label"> Output HTML </label>
+        </div>
+        <textarea id="myTextarea" rows="4" cols="50"></textarea> </textarea>
+    </div>
+    <script>
+        let outerHTMLArray = [];
+        let datalist = [];
+
+        function handleReadData(data) {
+            const inputValues = document.getElementById("myInput");
+            const generateButton = document.getElementById("generateBtn");
+            if (inputValues.value.trim() === "") {
+                window.alert("Input field is empty")
+                return;
+            }
+            try {
+                const jsonArray = JSON.parse(inputValues.value);
+                datalist = [];
+                outerHTMLArray=[];
+                if (jsonArray.length !== 0) {
+                    let alldata = false;
+                    const input = document.getElementById("myTextarea");
+                    jsonArray.forEach(item => {
+                        if (datalist.length === 0) {
+                            createData(item);
+                        } else {
+                            if (datalist.includes(item.id)) {
+                                alldata = true;
+                            } else {
+                                createData(item);
+                            }
+                        }
+                    });
+                    if (alldata) {
+                        input.value = "ID duplicated";
+                    } else {
+                        input.value = outerHTMLArray.join("\n");
+                    }
+                }
+            } catch (error) {
+                window.alert("Its not a expected format, Accept only JSON format")
+            }
+        }
+
+        function createData(item) {
+            if (!outerHTMLArray.includes(item.id)) {
+                datalist.push(item.id);
+                const div = document.createElement("div");
+                div.classList.add("root");
+                div.setAttribute("data-id", item.id);
+                const usernameSpan = document.createElement("span");
+                usernameSpan.classList.add("username");
+                usernameSpan.textContent = item.username;
+                const videoNameSpan = document.createElement("span");
+                videoNameSpan.classList.add("video_name");
+                videoNameSpan.textContent = item.video_name;
+                const additionalDetailsSpan = document.createElement("span");
+                additionalDetailsSpan.classList.add("additional_details");
+                const typeSpan = document.createElement("span");
+                typeSpan.classList.add("type");
+                typeSpan.textContent = item.action;
+                div.appendChild(usernameSpan);
+                div.appendChild(videoNameSpan);
+                div.appendChild(additionalDetailsSpan);
+                div.appendChild(typeSpan);
+                outerHTMLArray.push(div.outerHTML);
+            }
+        }
+    </script>
+</body>
+
+</html>
